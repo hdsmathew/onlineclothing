@@ -2,15 +2,78 @@
 
   include_once "../config/Database.php";
   include_once "../models/Product.php";
+  include_once "../models/Review.php";
 
   $database = new Database();
   $db = $database->connect();
 
-  $productModel = new Product($db);
-
   // Product to view
+  $productModel = new Product($db);
   $productModel->productId = $_GET['productId'] or die("No product specified");
   $productModel->readSingle();
+
+   // Reviews
+  $reviewModel = new Review($db);
+  $reviewsStmt = $reviewModel->read($productModel->productId, 0);
+
+  $totalReviews = $reviewsStmt->rowCount();
+  $totalRating = 0;
+  $avgRating = 0;
+
+  // Product Reviews
+  $reviews = $reviewsStmt->fetchAll(PDO::FETCH_ASSOC);
+  foreach ($reviews as $review) {
+    $totalRating += $review['rating'];
+    $stars = "";
+
+    for ($i = 1, $fullStar = $review['rating']; $i <= 5; $i++) {
+      if ($fullStar > 0) {
+        $fullStar--;
+        $stars .= '<i class="fa-solid fa-star"></i>';
+        continue;
+      }
+      $stars .= '<i class="fa-regular fa-star"></i>';
+    }
+
+    $productReviews .= <<<HTML
+      <!-- Box -->
+      <div class="review-box">
+        <div class="box-top d-flex justify-content-between align-items-center">
+          <div class="profile d-flex align-items-center">
+            <!-- Profile Pic -->
+            <div class="profile-img">
+              <img src="img/Kai.webp" alt="">
+            </div>
+            <!-- Name | Username -->
+            <div class="name-user d-flex flex-column">
+              <strong>{$review['firstName']}</strong>
+              <span>@{$review['username']}</span>
+            </div>
+          </div>
+          <!-- Star Rating -->
+          <div class="star-rating">
+            {$stars}
+          </div>
+        </div>
+        <!-- Comments -->
+        <div class="comment">
+          <p>{$review['reviewDesc']}</p>
+        </div>
+      </div>
+    HTML;
+  }  
+
+  $avgRating = !empty($totalRating) ? round($totalRating/$totalReviews) : 0;
+  $stars = "";
+
+  for ($i = 1, $fullStar = $avgRating; $i <= 5; $i++) {
+    if ($fullStar > 0) {
+      $fullStar--;
+      $stars .= '<i class="fa-solid fa-star"></i>';
+      continue;
+    }
+    $stars .= '<i class="fa-regular fa-star"></i>';
+  }  
 
   $discountedPrice = (1 - $productModel->discount / 100) * $productModel->unitPrice;
   $actualPrice = !empty($productModel->discount) ? "<span class='actual-price'>Rs {$productModel->unitPrice}</span>" : "";
@@ -25,12 +88,8 @@
         <div class="product-detail-desc">
           <h1>{$productModel->prodName}</h1>
           <div class="star-rating d-flex gap-1 mt-1">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <p>(7)</p>
+            {$stars}
+            <p>({$totalReviews})</p>
           </div>
           <h4>Details:</h4>
           <p>{$productModel->prodDesc}</p>
@@ -69,6 +128,8 @@
   HTML;
 
   // Suggestions
+  $avgRating = 0;
+  $totalReviews = 0;
   $products = $productModel->read($productModel->categoryName)->fetchAll(PDO::FETCH_ASSOC);
 
   foreach ($products as $product) {

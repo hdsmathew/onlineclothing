@@ -24,8 +24,11 @@
             r.postedOn,
             r.reviewDesc,
             r.customerId,
-            r.rating
-          FROM {$this->table} r
+            r.rating,
+            c.username,
+            c.firstName
+          FROM {$this->table} r INNER JOIN customer c
+          ON r.customerId = c.customerId
           WHERE r.productId LIKE '$productId'
           AND r.flag LIKE '$flag';";
 

@@ -34,7 +34,7 @@
         'postedOn' => $postedOn,
         'reviewDesc' => $reviewDesc,
         'customerId' => $customerId,
-        'rating' => $rating
+        'rating' => $rating,
       );
 
       array_push($reviewArr['data'], $review);

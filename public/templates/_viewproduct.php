@@ -38,34 +38,7 @@
         </div>
         <!-- Reviews Box Container -->
         <div class="d-flex justify-content-center align-items-center flex-wrap w-100">
-          <!-- Box -->
-          <div class="review-box">
-            <div class="box-top d-flex justify-content-between align-items-center">
-              <div class="profile d-flex align-items-center">
-                <!-- Profile Pic -->
-                <div class="profile-img">
-                  <img src="img/Kai.webp" alt="">
-                </div>
-                <!-- Name | Username -->
-                <div class="name-user d-flex flex-column">
-                  <strong>Mathew</strong>
-                  <span>@hdsmathew</span>
-                </div>
-              </div>
-              <!-- Star Rating -->
-              <div class="star-rating">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-              </div>
-            </div>
-            <!-- Comments -->
-            <div class="comment">
-              <p>Nice</p>
-            </div>
-          </div>
+          <?= $productReviews; ?>
         </div>
       </section>
       <!-- Suggestions -->
