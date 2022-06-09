@@ -69,7 +69,7 @@
 
     // CREATE product
     public function create() {
-      $query = "INSERT INTO $this->table
+      $query = "INSERT INTO $this->table (prodDesc, prodName, unitPrice, discount, picture, categoryId)
             VALUES (
               :prodDesc,
               :prodName,
