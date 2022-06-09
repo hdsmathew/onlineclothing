@@ -37,7 +37,7 @@
 
     // CREATE review
     public function create() {
-      $query = "INSERT INTO $this->table
+      $query = "INSERT INTO $this->table (productId, postedOn, reviewDesc, customerId, rating, flag)
             VALUES (
               :productId,
               :postedOn,
