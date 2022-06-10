@@ -54,9 +54,17 @@ main {
   color: #00ACEE;
 }
 
-.quantity, .select-size {
+.quantity, .select-size, .select-colour {
   gap: 20px;
   margin-top: 10px;
+}
+
+.select-size select {
+  height: 2.4rem;
+}
+
+.select-colour label {
+  width: 40%;
 }
 
 .quantity-desc {

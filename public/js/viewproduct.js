@@ -12,16 +12,18 @@ const decQty = () => {
 
 cart = getCart();
 
-let addToCartBtn = document.querySelector(".add-to-cart");
-addToCartBtn.addEventListener('click', () => {
-  let productId = addToCartBtn.getAttribute("data-id");
-  let price = parseInt(document.querySelector(".discounted-price span").innerText);
-  let size = document.querySelector("#size").value;
-  //let colour = document.querySelector("");
-  //let discount = document.querySelector("");
-  let quantity = parseInt(document.querySelector(".qty").innerText);
-  let fullImgUrl = document.querySelector('.product-detail-container img').src;
+$('.add-to-cart').click( function() {
+  let productId = $(this).attr('data-id');
+  let price = parseInt($('.discounted-price span').text());
+  let size = $('#size').val();
+  let colour = $('input[name="colour"]:checked').val();
+  let discount = $(this).attr('data-discount');
+  let quantity = parseInt($('.qty').text());
+  let imgUrl = $('.product-detail-container img')
+    .attr("src")
+    .split("/")
+    .slice(1)
+    .join("/");
 
-  let imgUrl = fullImgUrl.split('/').slice(6).join('/');
-  addToCart({ productId, size, colour: "Red", price, discount: 0, quantity, imgUrl});
-});
+  addToCart({ productId, size, colour, price, discount, quantity, imgUrl});
+} );

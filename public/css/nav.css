@@ -157,6 +157,10 @@ i:hover {
 	font-size: 20px;
 }
 
+.item-desc h4 span {
+	margin-right: 20px;
+}
+
 .item-desc .bottom {
 	margin-top: 30px;
 }
@@ -209,4 +213,12 @@ i:hover {
 
 .btn-continue:hover, .btn-checkout:hover {
 	transform: scale(1.1);
+}
+
+/* Media Query */
+@media (max-width: 500px) {
+	.navbar-brand img {
+		width: 200px;
+		height: 70px;
+	}
 }

@@ -11,6 +11,24 @@ let numCartItemsIcon = document.querySelector(".cart-item-qty");
 let cartContent = document.createElement("div");
 let cartBottom = document.createElement("div");
 
+// Open/Close Cart
+let toggleCart = () => {
+  cartDOM.classList.toggle("active-cart");
+  backdropDOM.classList.toggle("active-backdrop");
+};
+
+if (openCartBtn) {
+  openCartBtn.addEventListener('click', () => {
+    toggleCart();
+  });
+}
+
+if (closeCartBtn) {
+  closeCartBtn.addEventListener('click', () => {
+    toggleCart(); 
+  });
+}
+
 let saveCart = (cart) => {
   localStorage.setItem("cart", JSON.stringify(cart));
 };
@@ -28,7 +46,7 @@ let setCartUI = (cart) => {
         <path d="M832 312H696v-16c0-101.6-82.4-184-184-184s-184 82.4-184 184v16H192c-17.7 0-32 14.3-32 32v536c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V344c0-17.7-14.3-32-32-32zm-432-16c0-61.9 50.1-112 112-112s112 50.1 112 112v16H400v-16zm392 544H232V384h96v88c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-88h224v88c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-88h96v456z"></path>
       </svg>
       <h3>Your shopping cart is empty.</h3>
-      <button class="btn-continue" type="button">Continue Shopping</button>
+      <button class="btn-continue" type="button" onclick="toggleCart()">Continue Shopping</button>
     `;
     cartContainerDOM.appendChild(cartContent);
 
@@ -69,7 +87,7 @@ let addProductToCartContent = ({productId, size, colour, price, discount, imgUrl
         <h4>Rs ${price}</h4>
       </div>
       <div class="top">
-        <h4>Size: ${size}</h4>
+        <h4><span>Size: ${size}</span><span>Colour: ${colour}</span></h4>
       </div>
       <div class="d-flex justify-content-between bottom">
         <div>
@@ -117,25 +135,6 @@ let setCartValues = (cart) => {
 // Initialise Cart
 let cart = getCart();
 setCartUI(cart);
-
-
-// Open/Close Cart
-let toggleCart = () => {
-  cartDOM.classList.toggle("active-cart");
-  backdropDOM.classList.toggle("active-backdrop");
-};
-
-if (openCartBtn) {
-  openCartBtn.addEventListener('click', () => {
-    toggleCart();
-  });
-}
-
-if (closeCartBtn) {
-  closeCartBtn.addEventListener('click', () => {
-    toggleCart(); 
-  });
-}
 
 
 // Edit Product Quantity in Cart

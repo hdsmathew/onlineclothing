@@ -110,16 +110,28 @@
               </span>
             </p>
           </div>
-          <div class="select-size d-flex">
-            <h3>Select Size</h3>
-            <select name="size" id="size">
-              <option value="S">Small</option>
-              <option value="M">Medium</option>
-              <option value="L">Large</option>
-            </select>
-          </div>
+          <div class="select-attr row row-cols-1 row-cols-sm-2">
+            <div class="select-colour btn-group col">
+              <div>
+                <h3>Select Colour</h3>  
+                <input type="radio" class="btn-check" name="colour" id="red" value="Red" autocomplete="off" checked>
+                <label for="red" class="btn btn-outline-danger">red</label>
+                
+                <input type="radio" class="btn-check" name="colour" id="blue" value="Blue" autocomplete="off">
+                <label for="blue" class="btn btn-outline-primary">blue</label>
+              </div>
+            </div>             
+            <div class="select-size col">
+              <h3>Select Size</h3>
+              <select name="size" id="size">
+                <option value="S">Small</option>
+                <option value="M">Medium</option>
+                <option value="L">Large</option>
+              </select>
+            </div>
+          </div>         
           <div class="buttons d-flex gap-4">
-            <button class="add-to-cart" type="button" data-id="{$productModel->productId}">Add to Cart</button>
+            <button class="add-to-cart" type="button" data-id="{$productModel->productId}" data-discount="{$productModel->discount}">Add to Cart</button>
             <button class="buy-now" type="button">Buy Now</button>
           </div>
         </div>            
