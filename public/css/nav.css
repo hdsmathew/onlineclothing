@@ -54,7 +54,7 @@ i {
   font-size: 28px;
 }
 
-i:hover {
+.cart-icon i:hover {
   transition: transform .4s ease;
   transform: scale(1.07);
 }
