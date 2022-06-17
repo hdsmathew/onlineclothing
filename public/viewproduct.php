@@ -140,8 +140,8 @@
   HTML;
 
   // Suggestions
-  $avgRating = 0;
-  $totalReviews = 0;
+  $suggestions = "";
+  $suggestionsMarquee = "";
   $products = $productModel->read($productModel->categoryName)->fetchAll(PDO::FETCH_ASSOC);
 
   foreach ($products as $product) {
@@ -156,7 +156,7 @@
           </a>
         </div>
         <div class="card-body">
-          <h5>Hoodie</h5>
+          <h5>{$product['prodName']}</h5>
           <p class="product-short-desc">{$product['prodDesc']}</p>
           <span class="price">Rs {$product['unitPrice']}</span>
         </div>

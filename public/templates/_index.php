@@ -41,32 +41,19 @@
       <h2>Trending Products</h2>
       <div class="marquee">
         <div class="product-container-marquee track d-flex justify-content-center mt-5">
-          <!-- Product Card -->
-          <div class="product-card d-flex flex-column">
-            <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <a href="#">
-                <img src="img/Men/Hoodies/41.png" alt="" class="card-img-top">
-              </a>
-            </div>
-            <div class="card-body">
-              <h5>Hoodie</h5>
-              <p class="product-short-desc">Made with highest quality</p>
-              <span class="actual-price">Rs 500</span>
-            </div>
-          </div>
+          <?= $trendingProducts; ?>
         </div>
       </div>
       <!-- Collections -->
       <div class="row g-3">
         <div class="col-md-6">
-          <a href="#" class="collection">
+          <a href="searchproduct.php?gender=women" class="collection">
             <img src="img/women-collection.png" alt="">
             <p class="collection-title">Women<br>Apparels</p>
           </a>
         </div>
         <div class="col-md-6">
-          <a href="#" class="collection">
+          <a href="searchproduct.php?gender=men" class="collection">
             <img src="img/men-collection.png" alt="">
             <p class="collection-title">Men<br>Apparels</p>
           </a>
@@ -74,24 +61,7 @@
       </div>
       <!-- Suggestions -->
       <h2>You may also like</h2>
-      <div class="marquee">
-        <div class="product-container-marquee track d-flex justify-content-center mt-5">
-          <!-- Product Card -->
-          <div class="product-card d-flex flex-column">
-            <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <a href="#">
-                <img src="img/Men/Hoodies/41.png" alt="" class="card-img-top">
-              </a>
-            </div>
-            <div class="card-body">
-              <h5>Hoodie</h5>
-              <p class="product-short-desc">Made with highest quality</p>
-              <span class="actual-price">Rs 500</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <?= $suggestionsMarquee; ?>
     </div>
   </main>
 
