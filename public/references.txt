@@ -1,0 +1,2 @@
+  home page layout: https://www.youtube.com/watch?v=0-NF3JMs4E8&ab_channel=ModernWeb
+  product page layout, cart logic: https://www.youtube.com/watch?v=4mOkFXyxfsU&t=7578s&ab_channel=JavaScriptMastery
