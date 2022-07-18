@@ -1,0 +1,5 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+RewriteRule ^product$ RestController.php?resource=product [nc,qsa]
+RewriteRule ^product/([0-9]*)$ RestController.php?resource=product&id=$1 [nc,qsa]
