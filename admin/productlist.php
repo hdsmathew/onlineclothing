@@ -19,7 +19,7 @@
           <div class="profile">
             <!--img---->
             <div class="profile-img">
-                <img src="images/{$product['imgUrl']}">
+                <img src="../public/img/{$product['imgUrl']}">
             </div>
             <h5 class="font-medium mb-0">{$product['prodName']}</h5>
           </div>

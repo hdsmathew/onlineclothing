@@ -2,7 +2,7 @@ $("button.delete-product").click(function () {
   let id = $(this).attr("data-id");
 
   $.ajax({
-    url: "../api/product/delete.php",
+    url: "../api/product",
     data: JSON.stringify({ productId: id }),
     contentType: "application/json",
     cache: false,

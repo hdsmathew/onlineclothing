@@ -3,8 +3,8 @@
   header('Allow-Control-Allow-Origin: *');
   header('Content-Type: application/json');
 
-  include_once('/home/headrick/web-project/config/Database.php');
-  include_once('/home/headrick/web-project/models/Product.php');
+  include_once('../../config/Database.php');
+  include_once('../../models/Product.php');
 
   // Set db connection
   $database = new Database();
@@ -13,8 +13,8 @@
   // Instantiate product model
   $productModel = new Product($db);
 
-  $category = $_GET['category'] ?? ""; 
-  $gender = $_GET['gender'] ?? ""; 
+  $category = $_GET['category'] ?? "%"; 
+  $gender = $_GET['gender'] ?? "%"; 
 
   // Query product
   $result = $productModel->read($category, $gender);

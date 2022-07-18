@@ -77,7 +77,7 @@ $('.category-list li').click( function() {
   let gender = queryAttr[1];
 
   $.ajax({
-    url: `../api/product/read.php?category=${category}&gender=${gender}`,
+    url: `../api/product?category=${category}&gender=${gender}`,
     cache: false,
     method: "GET",
     success: (response) => {
@@ -131,7 +131,7 @@ window.onpopstate = event => {
   let gender = event.state.gender;
 
   $.ajax({
-    url: `../api/product/read.php?category=${category}&gender=${gender}`,
+    url: `../api/product?category=${category}&gender=${gender}`,
     cache: false,
     method: "GET",
     success: (response) => {

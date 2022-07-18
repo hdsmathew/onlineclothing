@@ -1,9 +1,9 @@
 $(document).ready(function () {
   // Initialize stockLevel for a particular size and colour
   let inventory = JSON.parse(localStorage.getItem("inventory"));
-  let [size, colour] = Object.keys(inventory)[0].split("-");
+  if (inventory.length == 0) return;
 
-  if (inventory == null) return;
+  let [size, colour] = Object.keys(inventory)[0].split("-");
 
   // Select colour
   $('input:radio[name="colour"]')
@@ -47,6 +47,7 @@ $(document).ready(function () {
 
   $("button.btn-save").click(function () {
     let action = $(this).attr("data-action");
+    let requestMethod = (action == "update") ? "PUT" : "POST";
 
     let id = $(this).attr("data-updateId");
     let name = $("#name").val();
@@ -60,7 +61,7 @@ $(document).ready(function () {
     let imgUrl = $("#imgUrl").val();
 
     $.ajax({
-      url: `../updated/api/product/${action}.php`,
+      url: `../api/product`,
       data: JSON.stringify({
         productId: id,
         prodName: name,
@@ -75,7 +76,7 @@ $(document).ready(function () {
       }),
       contentType: "application/json",
       cache: false,
-      method: "POST",
+      method: requestMethod,
       success: (response) => {
         alert(JSON.stringify(response.message));
       },

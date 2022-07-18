@@ -6,6 +6,7 @@
   $database = new Database();
   $db = $database->connect();
 
+  $inventory = array();
   if (isset($_GET['productId'])) { //Edit product; fetch product info
     // Product to edit
     $productModel = new Product($db);
@@ -18,10 +19,9 @@
     foreach ($inventoryResults as $inventoryResult) {
       $inventory["{$inventoryResult['size']}-{$inventoryResult['colour']}"] = $inventoryResult['stockLevel'];
     }
-
-    // Encode to store in localstorage in js
-    $inventoryJSON = json_encode($inventory);
   }
+  // Encode to store in localstorage in js
+  $inventoryJSON = json_encode($inventory);
 ?>
 
 
@@ -45,8 +45,8 @@
     <link rel="stylesheet" href="css/addeditproduct.css">
 
     <script>
-      let inventory = <?= $inventoryJSON ?? "null"; ?>;
-      (inventory != null) && localStorage.setItem("inventory", JSON.stringify(inventory));
+      let inventory = <?= $inventoryJSON; ?>;
+      localStorage.setItem("inventory", JSON.stringify(inventory));
     </script>
 
   </head>
